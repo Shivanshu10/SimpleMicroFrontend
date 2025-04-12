@@ -1,6 +1,5 @@
 // use to merge the common config with the dev config
 const { merge } = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 // include common config
 const commonConfig = require('./webpack.common');
 // include module federation
@@ -24,9 +23,6 @@ const devConfig = {
             },
             // shared: ["react", "react-dom"]
             shared: packageJson.dependencies, // automatically handle deps
-        }),
-        new HtmlWebpackPlugin({
-            template: "./public/index.html",
         })
     ]
 }

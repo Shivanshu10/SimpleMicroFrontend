@@ -1,20 +1,27 @@
 import React from "react";
-import { Switch, Route, BrowserRouter } from "react-router-dom";
-import { StylesProvider } from "@material-ui/core";
-
+import { Switch, Route, Router } from "react-router-dom";
+import { StylesProvider, createGenerateClassName } from "@material-ui/core";
+     
 import Landing from "./components/Landing";
 import Princing from "./components/Pricing";
 
-export default () => {
+// add prefix to each css style of marketing
+const generateClassName = createGenerateClassName({
+    productionPrefix: "ma",
+});
+
+export default ({ history }) => {
     return (
         <div>
-            <StylesProvider>
-                <BrowserRouter>
+            {/* add feature to append ma prefix, to scope css */}
+            <StylesProvider generateClassName={generateClassName}>
+                {/* use memory history obj */}
+                <Router history={history}>
                     <Switch>
                         <Route exact path="/pricing" component={Princing} />
                         <Route exact path="/" component={Landing} />
                     </Switch>
-                </BrowserRouter>
+                </Router>
             </StylesProvider>
         </div>
     )
