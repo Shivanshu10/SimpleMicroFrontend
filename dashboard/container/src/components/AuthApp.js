@@ -1,8 +1,10 @@
-import { mount } from "marketing/MarketingApp";
+import { mount } from "auth/AuthApp";
 import React, { useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-export default () => {
+// onSignIn is a prop passed from container
+// to call when user signs in
+export default ({ onSignIn }) => {
     const ref = useRef(null);
     const history = useHistory();
 
@@ -25,6 +27,8 @@ export default () => {
                 },
                 // pass initialPath to subapp
                 initialPath: history.location.pathname,
+                // callback when sign in happens
+                onSignIn,
             });
 
             // listen to history changes
